@@ -15,7 +15,7 @@ const Input: React.FC<InputProps> = ({ value, onChange, placeholder = '', type =
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      className={`p-5 rounded-lg text-black font-bold w-full ${className}`}
+      className={`p-5 rounded text-black font-bold w-full ${className}`}
     />
   )
 }

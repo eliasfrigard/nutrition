@@ -4,6 +4,8 @@ import React from 'react'
 import Input from '@/components/Input'
 import Select from '@/components/Select'
 
+import useStickyState from '@/hooks/useStickyState'
+
 type Nutrition = {
   calories: number
   protein?: number
@@ -35,8 +37,7 @@ export default function Home() {
   const [unitValue, setUnitValue] = React.useState('')
   const [quantityValue, setQuantityValue] = React.useState('')
 
-  const [addedItems, setAddedItems] = React.useState<AddedFood[]>([])
-  console.log('🚀 || Home || addedItems:', addedItems)
+  const [addedItems, setAddedItems] = useStickyState([] as AddedFood[], 'addedItems')
 
   const handleSubmit = () => {
     if (!foodValue || !quantityValue) {
@@ -74,8 +75,8 @@ export default function Home() {
   }, [])
 
   return (
-    <div className='container mx-auto px-6 w-full min-h-screen flex items-center justify-center flex-col gap-10'>
-      <div className='w-full flex flex-col gap-5 lg:w-1/2'>
+    <div className='container my-16 lg:my-24 mx-auto px-6 w-full flex items-center flex-col gap-10'>
+      <div className='w-full flex flex-col gap-5 lg:w-2/3'>
         <Input
           value={foodName}
           onChange={(event) => setFoodName(event.target.value)}
@@ -90,9 +91,8 @@ export default function Home() {
                 .map((item) => ({
                   value: item.id,
                   label: item.name,
-                  category: item.category,
                 }))
-                .sort((a, b) => a.category.toLowerCase().localeCompare(b.category.toLowerCase()))) ||
+                .sort((a, b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase()))) ||
             []
           }
         />
@@ -115,7 +115,7 @@ export default function Home() {
 
         <button
           onClick={handleSubmit}
-          className='p-5 bg-yellow-500 text-white rounded-lg font-bold hover:bg-yellow-600 duration-100'
+          className='p-5 bg-yellow-500 text-white rounded font-bold hover:bg-yellow-600 duration-100'
         >
           Submit
         </button>
@@ -123,55 +123,66 @@ export default function Home() {
 
       <div className='w-2/3 h-[1px] bg-white rounded-full opacity-10' />
 
-      <div className='w-full flex flex-col gap-4'>
-        {addedItems.map((item) => (
-          <div
-            key={item.id}
-            className='border w-full p-5 rounded-lg text-white flex justify-between tracking-wide'
-          >
-            <h3>{item.name}</h3>
+      {addedItems.length > 0 && (
+        <div className='w-full flex flex-col gap-4'>
+          <div className='w-full text-white flex justify-end'>
+            <div
+              onClick={() => setAddedItems([])}
+              className='p-4 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide'
+            >
+              <p>Clear All Values</p>
+            </div>
+          </div>
+
+          {addedItems.map((item) => (
+            <div
+              key={item.id}
+              className='border w-full p-5 rounded text-white flex justify-between tracking-wide'
+            >
+              <h3>{item.name}</h3>
+              <div className='flex gap-2'>
+                {Object.entries(item.foodItem.nutrition).map(([key, value]) => (
+                  <div
+                    key={key}
+                    className='border-r pr-2 border-yellow-500'
+                  >
+                    <p className='capitalize'>
+                      {key}: {value}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+
+          <div className='p-5 text-lg font-semibold flex justify-between bg-yellow-500 text-white rounded'>
+            <h3 className=''>Total</h3>
             <div className='flex gap-2'>
-              {Object.entries(item.foodItem.nutrition).map(([key, value]) => (
+              {Object.entries(
+                addedItems.reduce((acc, item) => {
+                  Object.entries(item.foodItem.nutrition).forEach(([key, value]) => {
+                    if (acc[key]) {
+                      acc[key] += value
+                    } else {
+                      acc[key] = value
+                    }
+                  })
+                  return acc
+                }, {} as Nutrition)
+              ).map(([key, value]) => (
                 <div
                   key={key}
                   className='border-r pr-2 border-yellow-500'
                 >
                   <p className='capitalize'>
-                    {key}: {value}
+                    {key}: {value.toFixed(2)}
                   </p>
                 </div>
               ))}
             </div>
           </div>
-        ))}
-
-        <div className='p-5 text-lg font-semibold flex justify-between bg-yellow-500 text-white rounded-lg'>
-          <h3 className=''>Total</h3>
-          <div className='flex gap-2'>
-            {Object.entries(
-              addedItems.reduce((acc, item) => {
-                Object.entries(item.foodItem.nutrition).forEach(([key, value]) => {
-                  if (acc[key]) {
-                    acc[key] += value
-                  } else {
-                    acc[key] = value
-                  }
-                })
-                return acc
-              }, {} as Nutrition)
-            ).map(([key, value]) => (
-              <div
-                key={key}
-                className='border-r pr-2 border-yellow-500'
-              >
-                <p className='capitalize'>
-                  {key}: {value.toFixed(2)}
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }

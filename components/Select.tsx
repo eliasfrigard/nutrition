@@ -12,7 +12,7 @@ interface SelectProps {
 const Select: React.FC<SelectProps> = ({ options, onChange, value, className, placeholder }) => {
   return (
     <select
-      className={`p-5 rounded-lg text-black font-bold w-full ${className}`}
+      className={`p-5 rounded text-black font-bold w-full ${className}`}
       value={value}
       onChange={(e) => onChange(e.target.value)}
     >

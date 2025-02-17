@@ -201,25 +201,25 @@
   },
   {
     "id": 27,
-    "name": "Kidneypapu",
+    "name": "Papu (Kidney)",
     "category": "legume",
     "nutrition": {}
   },
   {
     "id": 28,
-    "name": "Mustapapu",
+    "name": "Papu (Musta)",
     "category": "legume",
     "nutrition": {}
   },
   {
     "id": 29,
-    "name": "Islantilainen Jogurtti 3%",
+    "name": "Jogurtti Islantilainen 3%",
     "category": "dairy",
     "nutrition": {}
   },
   {
     "id": 30,
-    "name": "Sipoolainen Jogurtti 0.7%",
+    "name": "Jogurtti Sipoolainen 0.7%",
     "category": "dairy",
     "nutrition": {}
   },
