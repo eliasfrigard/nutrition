@@ -95,7 +95,14 @@
     "id": 9,
     "name": "Sipuli",
     "category": "vegetable",
-    "nutrition": {}
+    "nutrition": {
+      "calories": 40,
+      "protein": 1.1,
+      "carbohydrates": 9,
+      "sugar": 4.2,
+      "fat": 0.1,
+      "fiber": 1.7
+    }
   },
   {
     "id": 10,
@@ -137,7 +144,11 @@
     "id": 16,
     "name": "Kookosrasva",
     "category": "fat",
-    "nutrition": {}
+    "nutrition": {
+      "calories": 900,
+      "fat": 100,
+      "saturatedFat": 91
+    }
   },
   {
     "id": 17,
@@ -201,9 +212,17 @@
   },
   {
     "id": 27,
-    "name": "Papu (Kidney)",
+    "name": "GoGreen Kidneypapu",
     "category": "legume",
-    "nutrition": {}
+    "nutrition": {
+      "calories": 237,
+      "protein": 16.33,
+      "carbohydrates": 32.2,
+      "sugar": 1.61,
+      "fat": 1.38,
+      "saturatedFat": 0.46,
+      "fiber": 15.87
+    }
   },
   {
     "id": 28,
@@ -215,13 +234,27 @@
     "id": 29,
     "name": "Jogurtti Islantilainen 3%",
     "category": "dairy",
-    "nutrition": {}
+    "nutrition": {
+      "calories": 75,
+      "protein": 8,
+      "carbohydrates": 4,
+      "sugar": 4,
+      "fat": 3,
+      "saturatedFat": 2
+    }
   },
   {
     "id": 30,
     "name": "Jogurtti Sipoolainen 0.7%",
     "category": "dairy",
-    "nutrition": {}
+    "nutrition": {
+      "calories": 57,
+      "protein": 8.8,
+      "carbohydrates": 3.8,
+      "sugar": 3.8,
+      "fat": 0.7,
+      "saturatedFat": 0.5
+    }
   },
   {
     "id": 31,
@@ -258,5 +291,18 @@
     "name": "Porkkana",
     "category": "vegetable",
     "nutrition": {}
+  },
+  {
+    "id": 37,
+    "name": "Whey 80 (Vanilla-Pear)",
+    "category": "protein",
+    "nutrition": {
+      "calories": 390,
+      "protein": 75,
+      "carbohydrates": 6.7,
+      "sugar": 4.6,
+      "fat": 7.1,
+      "saturatedFat": 4
+    }
   }
 ]

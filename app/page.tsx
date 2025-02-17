@@ -9,19 +9,20 @@ import type { FoodItem, AddedFood, Nutrition } from '@/types'
 
 export default function Home() {
   const [foodItems, setFoodItems] = React.useState<FoodItem[]>([])
-  const [foodName, setFoodName] = React.useState('')
-  const [foodValue, setFoodValue] = React.useState('')
+  const [selectedFood, setSelectedFood] = React.useState<FoodItem | null>(null)
   const [unitValue, setUnitValue] = React.useState('')
-  const [quantityValue, setQuantityValue] = React.useState('')
+  const [quantityValue, setQuantityValue] = React.useState<number>(0)
 
   const [addedItems, setAddedItems] = useStickyState([] as AddedFood[], 'addedItems')
 
   const totalNutrition = React.useMemo(() => {
     return addedItems.reduce((acc, item) => {
+      const quantity = parseFloat(item.quantity)
+      const factor = isNaN(quantity) ? 1 : quantity / 100
+
       Object.entries(item.foodItem.nutrition).forEach(([key, value]) => {
-        // Type assertion to ensure key matches Nutrition keys
         const nutrientKey = key as keyof Nutrition
-        acc[nutrientKey] = (acc[nutrientKey] || 0) + value
+        acc[nutrientKey] = (acc[nutrientKey] || 0) + parseInt(value as string) * factor
       })
       return acc
     }, {} as { [key in keyof Nutrition]: number })
@@ -36,13 +37,10 @@ export default function Home() {
   }
 
   const handleSubmit = () => {
-    if (!foodValue || !quantityValue) {
+    if (!selectedFood || !quantityValue) {
       alert('Please select a food item and enter a quantity')
       return
     }
-
-    const selectedFood = foodItems.find((item) => item.id === parseInt(foodValue))
-    if (!selectedFood) return
 
     setAddedItems((prev) => [
       ...prev,
@@ -56,8 +54,12 @@ export default function Home() {
     ])
 
     // Reset form fields
-    setFoodName('')
-    setQuantityValue('')
+    setQuantityValue(0)
+  }
+
+  const handleFoodSelect = (value: string) => {
+    const selected = foodItems.find((item) => parseInt(item.id) === parseInt(value))
+    setSelectedFood(selected || null)
   }
 
   React.useEffect(() => {
@@ -70,16 +72,11 @@ export default function Home() {
   }, [])
 
   return (
-    <div className='container my-16 lg:my-24 mx-auto px-6 w-full flex items-center flex-col gap-10'>
+    <>
       <div className='w-full flex flex-col gap-5 lg:w-2/3'>
-        <Input
-          value={foodName}
-          onChange={(event) => setFoodName(event.target.value)}
-        />
-
         <Select
-          value={foodValue}
-          onChange={(value) => setFoodValue(value)}
+          value={selectedFood?.id}
+          onChange={(value) => handleFoodSelect(value)}
           options={
             (foodItems.length &&
               foodItems
@@ -94,10 +91,12 @@ export default function Home() {
 
         <div className='flex gap-4'>
           <Input
+            type='number'
             className='w-2/3'
             value={quantityValue}
-            onChange={(event) => setQuantityValue(event.target.value)}
+            setValue={(value) => setQuantityValue(value as number)}
             placeholder='Type something...'
+            onKeyUp={(e) => e.key === 'Enter' && handleSubmit()}
           />
           <Select
             value='1'
@@ -121,28 +120,32 @@ export default function Home() {
       {addedItems.length > 0 && (
         <div className='w-full flex flex-col gap-4'>
           <div className='w-full text-white flex justify-end'>
-            <div
+            <button
               onClick={() => setAddedItems([])}
-              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide'
+              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide w-full md:max-w-[200px]'
             >
               <p>Clear All Values</p>
-            </div>
+            </button>
           </div>
 
           {addedItems.map((item) => (
             <div
               key={item.id}
-              className='border w-full p-5 rounded text-white flex justify-between tracking-wide'
+              className='border w-full p-5 rounded text-white flex flex-col md:flex-row gap-2 justify-between tracking-wide'
             >
-              <h3>{item.name}</h3>
-              <div className='flex gap-2'>
+              <div className='flex items-center gap-2'>
+                <h3 className='font-semibold text-lg'>{item.name}</h3>
+                <p className='text-sm'>({item.quantity}g)</p>
+              </div>
+
+              <div className='flex flex-col md:flex-row gap-2'>
                 {Object.entries(item.foodItem.nutrition).map(([key, value]) => (
                   <div
                     key={key}
-                    className='border-r pr-2 border-yellow-500'
+                    className='border-l pl-3 md:border-l-0 md:border-r border-opacity-50 md:pl-0 pr-2 border-yellow-500 justify-center items-center'
                   >
-                    <p className='capitalize'>
-                      {key}: {value}
+                    <p className='capitalize text-sm'>
+                      {key}: {(parseInt(value as string) * (parseFloat(item.quantity) / 100)).toFixed(2)}
                     </p>
                   </div>
                 ))}
@@ -150,17 +153,16 @@ export default function Home() {
             </div>
           ))}
 
-          <div className='p-5 text-lg font-semibold flex justify-between bg-yellow-500 text-white rounded'>
-            <h3>Total</h3>
-            <div className='flex gap-2'>
+          <div className='p-5 text-lg font-semibold flex flex-col md:flex-row gap-1 justify-between items-center bg-yellow-500 text-white rounded'>
+            <h3 className='text-xl font-bold border-b pb-3 md:pb-0 border-opacity-20 md:border-b-0'>Total</h3>
+            <div className='flex gap-1 flex-col md:flex-row'>
               {Object.entries(totalNutrition).map(([key, value]) => (
                 <div
                   key={key}
-                  className='border-r pr-2 border-yellow-500'
+                  className='border-b md:border-r md:pr-2 flex justify-between w-full border-white py-2 border-opacity-20 md:border-yellow-500'
                 >
-                  <p className='capitalize'>
-                    {key}: {value.toFixed(2)}
-                  </p>
+                  <p className='capitalize text-[16px]'>{key}:</p>
+                  <p className='capitalize text-[16px]'>{parseInt(value as string).toFixed(2)}</p>
                 </div>
               ))}
             </div>
@@ -169,25 +171,19 @@ export default function Home() {
           <div className='w-full text-white flex justify-end gap-3'>
             <button
               onClick={() => copyToClipboard('calories')}
-              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide'
+              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide w-1/2 md:max-w-[200px]'
             >
               <p>Calories</p>
             </button>
             <button
-              onClick={() => copyToClipboard('carbs')}
-              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide'
-            >
-              <p>Carbohydrates</p>
-            </button>
-            <button
               onClick={() => copyToClipboard('protein')}
-              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide'
+              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide w-1/2 md:max-w-[200px]'
             >
               <p>Protein</p>
             </button>
           </div>
         </div>
       )}
-    </div>
+    </>
   )
 }
