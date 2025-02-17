@@ -2,6 +2,7 @@
   {
     "id": 1,
     "name": "Mutti Tomaattimurska",
+    "category": "vegetable",
     "nutrition": {
       "calories": 26,
       "protein": 1.2,
@@ -13,6 +14,7 @@
   {
     "id": 2,
     "name": "Atria Naudan Jauheliha 10%",
+    "category": "protein",
     "nutrition": {
       "calories": 168,
       "protein": 20,
@@ -23,6 +25,7 @@
   {
     "id": 3,
     "name": "Risella Kvinoa",
+    "category": "carbohydrate",
     "nutrition": {
       "calories": 366,
       "protein": 14,
@@ -36,6 +39,7 @@
   {
     "id": 4,
     "name": "Jyväbroiler Naturell",
+    "category": "protein",
     "nutrition": {
       "calories": 99,
       "protein": 22,
@@ -46,6 +50,7 @@
   {
     "id": 5,
     "name": "Jyväbroiler Merisuola",
+    "category": "protein",
     "nutrition": {
       "calories": 90,
       "protein": 20,
@@ -56,6 +61,7 @@
   {
     "id": 6,
     "name": "Jyväbroiler Paahteinen Paprika",
+    "category": "protein",
     "nutrition": {
       "calories": 99,
       "protein": 19,
@@ -66,6 +72,7 @@
   {
     "id": 7,
     "name": "Jyväbroiler Rosmariini-Karpalo",
+    "category": "protein",
     "nutrition": {
       "calories": 93,
       "protein": 20,
@@ -76,6 +83,7 @@
   {
     "id": 8,
     "name": "Jyväbroiler Perilja-Valkosipuli",
+    "category": "protein",
     "nutrition": {
       "calories": 89,
       "protein": 20,
@@ -86,187 +94,169 @@
   {
     "id": 9,
     "name": "Sipuli",
-    "nutrition": {
-    }
+    "category": "vegetable",
+    "nutrition": {}
   },
   {
     "id": 10,
     "name": "Valkosipuli",
+    "category": "vegetable",
     "nutrition": {}
   },
   {
     "id": 11,
     "name": "Paprika",
+    "category": "vegetable",
     "nutrition": {}
   },
   {
     "id": 12,
     "name": "Tomaatti",
+    "category": "vegetable",
     "nutrition": {}
   },
   {
     "id": 13,
     "name": "Kurkku",
+    "category": "vegetable",
     "nutrition": {}
   },
   {
     "id": 14,
     "name": "Kauramaito",
+    "category": "dairy",
     "nutrition": {}
   },
   {
     "id": 15,
     "name": "MIR Riisi",
+    "category": "carbohydrate",
     "nutrition": {}
-    },
-    {
+  },
+  {
     "id": 16,
     "name": "Kookosrasva",
+    "category": "fat",
     "nutrition": {}
-    },
-    {
+  },
+  {
     "id": 17,
     "name": "Oliiviöljy",
+    "category": "fat",
     "nutrition": {}
-    },
-    {
+  },
+  {
     "id": 18,
     "name": "Valio Voi",
+    "category": "dairy",
     "nutrition": {}
-    },
-    {
+  },
+  {
     "id": 19,
     "name": "Valio Maitorahka",
+    "category": "dairy",
     "nutrition": {}
-    },
-    {
+  },
+  {
     "id": 20,
     "name": "Chia-siemenet",
+    "category": "seed",
     "nutrition": {}
-    },
-    {
+  },
+  {
     "id": 21,
     "name": "Kaurahiutaleet",
+    "category": "carbohydrate",
     "nutrition": {}
-    },
-    {
+  },
+  {
     "id": 22,
     "name": "Maito 1,5%",
+    "category": "dairy",
     "nutrition": {}
-    },
-    {
+  },
+  {
     "id": 23,
     "name": "Maito 3%",
+    "category": "dairy",
     "nutrition": {}
-    },
-    {
+  },
+  {
     "id": 24,
     "name": "Keso",
+    "category": "dairy",
     "nutrition": {}
-    },
-    {
+  },
+  {
     "id": 25,
     "name": "Soija",
+    "category": "protein",
     "nutrition": {}
-    },
-    {
-      "id": 26,
-      "name": "Kalakastike",
-      "nutrition": {}
-    },
-    {
-      "id": 27,
-      "name": "Kidneypapu",
-      "nutrition": {}
-    },
-    {
-      "id": 28,
-      "name": "Mustapapu",
-      "nutrition": {}
-    },
-    {
-      "id": 29,
-      "name": "Islantilainen Jogurtti 3%",
-      "nutrition": {}
-    },
-    {
-      "id": 30,
-      "name": "Sipoolainen Jogurtti 0.7%",
-      "nutrition": {}
-    },
-    {
-      "id": 31,
-      "name": "Inkivääri",
-      "nutrition": {}
-    },
-    {
-      "id": 32,
-      "name": "Chili",
-      "nutrition": {}
-    },
-    {
-      "id": 33,
-      "name": "Hunaja",
-      "nutrition": {}
-    },
-    {
-      "id": 34,
-      "name": "Crystal Stevia",
-      "nutrition": {}
-    },
-    {
-      "id": 35,
-      "name": "Lime/Sitruuna -mehu",
-      "nutrition": {}
-    },
-    {
-      "id": 36,
-      "name": "Porkkana",
-      "nutrition": {}
-    },
-    {
-      "id": 37,
-      "name": "",
-      "nutrition": {}
-    },
-    {
-      "id": 38,
-      "name": "",
-      "nutrition": {}
-    },
-    {
-      "id": 39,
-      "name": "",
-      "nutrition": {}
-    },
-    {
-      "id": 40,
-      "name": "",
-      "nutrition": {}
-    },
-    {
-      "id": 41,
-      "name": "",
-      "nutrition": {}
-    },
-    {
-      "id": 42,
-      "name": "",
-      "nutrition": {}
-    },
-    {
-      "id": 43,
-      "name": "",
-      "nutrition": {}
-    },
-    {
-      "id": 44,
-      "name": "",
-      "nutrition": {}
-    },
-    {
-      "id": 45,
-      "name": "",
-      "nutrition": {}
-    }
+  },
+  {
+    "id": 26,
+    "name": "Kalakastike",
+    "category": "condiment",
+    "nutrition": {}
+  },
+  {
+    "id": 27,
+    "name": "Kidneypapu",
+    "category": "legume",
+    "nutrition": {}
+  },
+  {
+    "id": 28,
+    "name": "Mustapapu",
+    "category": "legume",
+    "nutrition": {}
+  },
+  {
+    "id": 29,
+    "name": "Islantilainen Jogurtti 3%",
+    "category": "dairy",
+    "nutrition": {}
+  },
+  {
+    "id": 30,
+    "name": "Sipoolainen Jogurtti 0.7%",
+    "category": "dairy",
+    "nutrition": {}
+  },
+  {
+    "id": 31,
+    "name": "Inkivääri",
+    "category": "vegetable",
+    "nutrition": {}
+  },
+  {
+    "id": 32,
+    "name": "Chili",
+    "category": "vegetable",
+    "nutrition": {}
+  },
+  {
+    "id": 33,
+    "name": "Hunaja",
+    "category": "sweetener",
+    "nutrition": {}
+  },
+  {
+    "id": 34,
+    "name": "Crystal Stevia",
+    "category": "sweetener",
+    "nutrition": {}
+  },
+  {
+    "id": 35,
+    "name": "Lime/Sitruuna -mehu",
+    "category": "fruit",
+    "nutrition": {}
+  },
+  {
+    "id": 36,
+    "name": "Porkkana",
+    "category": "vegetable",
+    "nutrition": {}
+  }
 ]
