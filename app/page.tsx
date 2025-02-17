@@ -5,30 +5,7 @@ import Input from '@/components/Input'
 import Select from '@/components/Select'
 
 import useStickyState from '@/hooks/useStickyState'
-
-type Nutrition = {
-  calories: number
-  protein?: number
-  carbs?: number
-  fat?: number
-  saturatedFat?: number
-  sugar?: number
-}
-
-type FoodItem = {
-  id: string
-  name: string
-  category: string
-  nutrition: Nutrition
-}
-
-type AddedFood = {
-  id: string
-  name: string
-  quantity: string
-  unit: string
-  foodItem: FoodItem
-}
+import type { FoodItem, AddedFood, Nutrition } from '@/types'
 
 export default function Home() {
   const [foodItems, setFoodItems] = React.useState<FoodItem[]>([])
@@ -39,6 +16,25 @@ export default function Home() {
 
   const [addedItems, setAddedItems] = useStickyState([] as AddedFood[], 'addedItems')
 
+  const totalNutrition = React.useMemo(() => {
+    return addedItems.reduce((acc, item) => {
+      Object.entries(item.foodItem.nutrition).forEach(([key, value]) => {
+        // Type assertion to ensure key matches Nutrition keys
+        const nutrientKey = key as keyof Nutrition
+        acc[nutrientKey] = (acc[nutrientKey] || 0) + value
+      })
+      return acc
+    }, {} as { [key in keyof Nutrition]: number })
+  }, [addedItems])
+
+  const copyToClipboard = (nutrient: keyof Nutrition) => {
+    const value = totalNutrition[nutrient] || 0
+    navigator.clipboard
+      .writeText(value.toFixed(2))
+      .then(() => alert(`Copied ${nutrient}: ${value.toFixed(2)}`))
+      .catch((err) => console.error('Failed to copy: ', err))
+  }
+
   const handleSubmit = () => {
     if (!foodValue || !quantityValue) {
       alert('Please select a food item and enter a quantity')
@@ -46,7 +42,6 @@ export default function Home() {
     }
 
     const selectedFood = foodItems.find((item) => item.id === parseInt(foodValue))
-    console.log('🚀 || handleSubmit || selectedFood:', selectedFood)
     if (!selectedFood) return
 
     setAddedItems((prev) => [
@@ -128,7 +123,7 @@ export default function Home() {
           <div className='w-full text-white flex justify-end'>
             <div
               onClick={() => setAddedItems([])}
-              className='p-4 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide'
+              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide'
             >
               <p>Clear All Values</p>
             </div>
@@ -156,20 +151,9 @@ export default function Home() {
           ))}
 
           <div className='p-5 text-lg font-semibold flex justify-between bg-yellow-500 text-white rounded'>
-            <h3 className=''>Total</h3>
+            <h3>Total</h3>
             <div className='flex gap-2'>
-              {Object.entries(
-                addedItems.reduce((acc, item) => {
-                  Object.entries(item.foodItem.nutrition).forEach(([key, value]) => {
-                    if (acc[key]) {
-                      acc[key] += value
-                    } else {
-                      acc[key] = value
-                    }
-                  })
-                  return acc
-                }, {} as Nutrition)
-              ).map(([key, value]) => (
+              {Object.entries(totalNutrition).map(([key, value]) => (
                 <div
                   key={key}
                   className='border-r pr-2 border-yellow-500'
@@ -180,6 +164,27 @@ export default function Home() {
                 </div>
               ))}
             </div>
+          </div>
+
+          <div className='w-full text-white flex justify-end gap-3'>
+            <button
+              onClick={() => copyToClipboard('calories')}
+              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide'
+            >
+              <p>Calories</p>
+            </button>
+            <button
+              onClick={() => copyToClipboard('carbs')}
+              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide'
+            >
+              <p>Carbohydrates</p>
+            </button>
+            <button
+              onClick={() => copyToClipboard('protein')}
+              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide'
+            >
+              <p>Protein</p>
+            </button>
           </div>
         </div>
       )}
