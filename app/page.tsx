@@ -30,10 +30,7 @@ export default function Home() {
 
   const copyToClipboard = (nutrient: keyof Nutrition) => {
     const value = totalNutrition[nutrient] || 0
-    navigator.clipboard
-      .writeText(value.toFixed(2))
-      .then(() => alert(`Copied ${nutrient}: ${value.toFixed(2)}`))
-      .catch((err) => console.error('Failed to copy: ', err))
+    navigator.clipboard.writeText(value.toFixed(2)).catch((err) => console.error('Failed to copy: ', err))
   }
 
   const handleSubmit = () => {
@@ -118,7 +115,7 @@ export default function Home() {
       <div className='w-2/3 h-[1px] bg-white rounded-full opacity-10' />
 
       {addedItems.length > 0 && (
-        <div className='w-full flex flex-col gap-4'>
+        <div className='w-full flex flex-col gap-4 -mt-6'>
           <div className='w-full text-white flex justify-end'>
             <button
               onClick={() => setAddedItems([])}
@@ -155,7 +152,7 @@ export default function Home() {
 
           <div className='p-5 text-lg font-semibold flex flex-col md:flex-row gap-1 justify-between items-center bg-yellow-500 text-white rounded'>
             <h3 className='text-xl font-bold border-b pb-3 md:pb-0 border-opacity-20 md:border-b-0'>Total</h3>
-            <div className='flex gap-1 flex-col md:flex-row'>
+            <div className='flex gap-1 flex-col md:flex-row w-full md:w-auto'>
               {Object.entries(totalNutrition).map(([key, value]) => (
                 <div
                   key={key}
