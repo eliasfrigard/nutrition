@@ -144,6 +144,33 @@ export default function Home() {
             </div>
           </div>
         ))}
+
+        <div className='p-5 text-lg font-semibold flex justify-between bg-yellow-500 text-white rounded-lg'>
+          <h3 className=''>Total</h3>
+          <div className='flex gap-2'>
+            {Object.entries(
+              addedItems.reduce((acc, item) => {
+                Object.entries(item.foodItem.nutrition).forEach(([key, value]) => {
+                  if (acc[key]) {
+                    acc[key] += value
+                  } else {
+                    acc[key] = value
+                  }
+                })
+                return acc
+              }, {} as Nutrition)
+            ).map(([key, value]) => (
+              <div
+                key={key}
+                className='border-r pr-2 border-yellow-500'
+              >
+                <p className='capitalize'>
+                  {key}: {value.toFixed(2)}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   )
