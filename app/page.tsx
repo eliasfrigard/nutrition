@@ -3,10 +3,10 @@
 import React from 'react'
 import Input from '@/components/Input'
 import Select from '@/components/Select'
-import Button from '@/components/Button'
+import NutritionView from '@/components/NutritionView'
 
 import useStickyState from '@/hooks/useStickyState'
-import type { FoodItem, AddedFood, Nutrition } from '@/types'
+import type { FoodItem, AddedFood } from '@/types'
 
 export default function Home() {
   const [foodItems, setFoodItems] = React.useState<FoodItem[]>([])
@@ -15,24 +15,6 @@ export default function Home() {
   const [quantityValue, setQuantityValue] = React.useState<number | null>(null)
 
   const [addedItems, setAddedItems] = useStickyState([] as AddedFood[], 'addedItems')
-
-  const totalNutrition = React.useMemo(() => {
-    return addedItems.reduce((acc, item) => {
-      const quantity = parseFloat(item.quantity)
-      const factor = isNaN(quantity) ? 1 : quantity / 100
-
-      Object.entries(item.foodItem.nutrition).forEach(([key, value]) => {
-        const nutrientKey = key as keyof Nutrition
-        acc[nutrientKey] = (acc[nutrientKey] || 0) + parseInt(value as string) * factor
-      })
-      return acc
-    }, {} as { [key in keyof Nutrition]: number })
-  }, [addedItems])
-
-  const copyToClipboard = (nutrient: keyof Nutrition) => {
-    const value = totalNutrition[nutrient] || 0
-    navigator.clipboard.writeText(value.toFixed(2)).catch((err) => console.error('Failed to copy: ', err))
-  }
 
   const handleSubmit = () => {
     if (!selectedFood || !quantityValue) {
@@ -51,7 +33,6 @@ export default function Home() {
       },
     ])
 
-    // Reset form fields
     setQuantityValue(null)
   }
 
@@ -117,64 +98,10 @@ export default function Home() {
       <div className='w-2/3 h-[1px] bg-white rounded-full opacity-10' />
 
       {addedItems.length > 0 && (
-        <div className='w-full flex flex-col gap-4'>
-          <div className='w-full text-white flex justify-end'>
-            <Button
-              onClick={() => {
-                if (window.confirm('Are you sure you want to clear all values?')) {
-                  setAddedItems([])
-                }
-              }}
-            >
-              Clear All Values
-            </Button>
-          </div>
-
-          {addedItems.map((item) => (
-            <div
-              key={item.id}
-              className='border w-full p-5 rounded text-white flex flex-col md:flex-row gap-2 justify-between tracking-wide'
-            >
-              <div className='flex items-center gap-2'>
-                <h3 className='font-semibold text-lg'>{item.name}</h3>
-                <p className='text-sm'>({item.quantity}g)</p>
-              </div>
-
-              <div className='flex flex-col md:flex-row gap-2'>
-                {Object.entries(item.foodItem.nutrition).map(([key, value]) => (
-                  <div
-                    key={key}
-                    className='border-l pl-3 md:border-l-0 md:border-r border-opacity-50 md:pl-0 pr-2 border-yellow-500 justify-center items-center'
-                  >
-                    <p className='capitalize text-sm'>
-                      {key}: {(parseInt(value as string) * (parseFloat(item.quantity) / 100)).toFixed(2)}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-
-          <div className='p-5 text-lg font-semibold flex flex-col md:flex-row gap-1 justify-between items-center bg-yellow-500 text-white rounded'>
-            <h3 className='text-xl font-bold border-b pb-3 md:pb-0 border-opacity-20 md:border-b-0'>Total</h3>
-            <div className='flex gap-1 flex-col md:flex-row w-full md:w-auto'>
-              {Object.entries(totalNutrition).map(([key, value]) => (
-                <div
-                  key={key}
-                  className='border-b md:border-r md:pr-2 flex justify-between w-full border-white py-2 border-opacity-20 md:border-yellow-500'
-                >
-                  <p className='capitalize text-[16px]'>{key}:</p>
-                  <p className='capitalize text-[16px]'>{parseInt(value as string).toFixed(2)}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className='w-full text-white flex justify-end gap-3'>
-            <Button onClick={() => copyToClipboard('calories')}>Calories</Button>
-            <Button onClick={() => copyToClipboard('protein')}>Protein</Button>
-          </div>
-        </div>
+        <NutritionView
+          items={addedItems}
+          clearItems={setAddedItems([])}
+        />
       )}
     </>
   )
