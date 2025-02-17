@@ -3,6 +3,7 @@
 import React from 'react'
 import Input from '@/components/Input'
 import Select from '@/components/Select'
+import Button from '@/components/Button'
 
 import useStickyState from '@/hooks/useStickyState'
 import type { FoodItem, AddedFood, Nutrition } from '@/types'
@@ -51,7 +52,7 @@ export default function Home() {
     ])
 
     // Reset form fields
-    setQuantityValue(0)
+    setQuantityValue(null)
   }
 
   const handleFoodSelect = (value: string) => {
@@ -118,12 +119,15 @@ export default function Home() {
       {addedItems.length > 0 && (
         <div className='w-full flex flex-col gap-4'>
           <div className='w-full text-white flex justify-end'>
-            <button
-              onClick={() => setAddedItems([])}
-              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide w-full md:max-w-[200px]'
+            <Button
+              onClick={() => {
+                if (window.confirm('Are you sure you want to clear all values?')) {
+                  setAddedItems([])
+                }
+              }}
             >
-              <p>Clear All Values</p>
-            </button>
+              Clear All Values
+            </Button>
           </div>
 
           {addedItems.map((item) => (
@@ -167,18 +171,8 @@ export default function Home() {
           </div>
 
           <div className='w-full text-white flex justify-end gap-3'>
-            <button
-              onClick={() => copyToClipboard('calories')}
-              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide w-1/2 md:max-w-[200px]'
-            >
-              <p>Calories</p>
-            </button>
-            <button
-              onClick={() => copyToClipboard('protein')}
-              className='p-3 rounded border border-opacity-40 border-white hover:border-opacity-100 cursor-pointer hover:bg-white hover:text-black duration-100 font-medium tracking-wide w-1/2 md:max-w-[200px]'
-            >
-              <p>Protein</p>
-            </button>
+            <Button onClick={() => copyToClipboard('calories')}>Calories</Button>
+            <Button onClick={() => copyToClipboard('protein')}>Protein</Button>
           </div>
         </div>
       )}
