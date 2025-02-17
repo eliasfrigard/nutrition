@@ -1,0 +1,272 @@
+[
+  {
+    "id": 1,
+    "name": "Mutti Tomaattimurska",
+    "nutrition": {
+      "calories": 26,
+      "protein": 1.2,
+      "carbohydrates": 3.9,
+      "sugar": 2.8,
+      "fat": 0.2
+    }
+  },
+  {
+    "id": 2,
+    "name": "Atria Naudan Jauheliha 10%",
+    "nutrition": {
+      "calories": 168,
+      "protein": 20,
+      "fat": 10,
+      "saturatedFat": 5.2
+    }
+  },
+  {
+    "id": 3,
+    "name": "Risella Kvinoa",
+    "nutrition": {
+      "calories": 366,
+      "protein": 14,
+      "carbohydrates": 60.8,
+      "sugar": 5.6,
+      "fat": 5.8,
+      "saturatedFat": 0.69,
+      "fiber": 7.3
+    }
+  },
+  {
+    "id": 4,
+    "name": "Jyväbroiler Naturell",
+    "nutrition": {
+      "calories": 99,
+      "protein": 22,
+      "fat": 1.2,
+      "saturatedFat": 0.4
+    }
+  },
+  {
+    "id": 5,
+    "name": "Jyväbroiler Merisuola",
+    "nutrition": {
+      "calories": 90,
+      "protein": 20,
+      "fat": 1.1,
+      "saturatedFat": 0.3
+    }
+  },
+  {
+    "id": 6,
+    "name": "Jyväbroiler Paahteinen Paprika",
+    "nutrition": {
+      "calories": 99,
+      "protein": 19,
+      "fat": 2.2,
+      "saturatedFat": 0.4
+    }
+  },
+  {
+    "id": 7,
+    "name": "Jyväbroiler Rosmariini-Karpalo",
+    "nutrition": {
+      "calories": 93,
+      "protein": 20,
+      "fat": 1.1,
+      "saturatedFat": 0.3
+    }
+  },
+  {
+    "id": 8,
+    "name": "Jyväbroiler Perilja-Valkosipuli",
+    "nutrition": {
+      "calories": 89,
+      "protein": 20,
+      "fat": 1.1,
+      "saturatedFat": 0.3
+    }
+  },
+  {
+    "id": 9,
+    "name": "Sipuli",
+    "nutrition": {
+    }
+  },
+  {
+    "id": 10,
+    "name": "Valkosipuli",
+    "nutrition": {}
+  },
+  {
+    "id": 11,
+    "name": "Paprika",
+    "nutrition": {}
+  },
+  {
+    "id": 12,
+    "name": "Tomaatti",
+    "nutrition": {}
+  },
+  {
+    "id": 13,
+    "name": "Kurkku",
+    "nutrition": {}
+  },
+  {
+    "id": 14,
+    "name": "Kauramaito",
+    "nutrition": {}
+  },
+  {
+    "id": 15,
+    "name": "MIR Riisi",
+    "nutrition": {}
+    },
+    {
+    "id": 16,
+    "name": "Kookosrasva",
+    "nutrition": {}
+    },
+    {
+    "id": 17,
+    "name": "Oliiviöljy",
+    "nutrition": {}
+    },
+    {
+    "id": 18,
+    "name": "Valio Voi",
+    "nutrition": {}
+    },
+    {
+    "id": 19,
+    "name": "Valio Maitorahka",
+    "nutrition": {}
+    },
+    {
+    "id": 20,
+    "name": "Chia-siemenet",
+    "nutrition": {}
+    },
+    {
+    "id": 21,
+    "name": "Kaurahiutaleet",
+    "nutrition": {}
+    },
+    {
+    "id": 22,
+    "name": "Maito 1,5%",
+    "nutrition": {}
+    },
+    {
+    "id": 23,
+    "name": "Maito 3%",
+    "nutrition": {}
+    },
+    {
+    "id": 24,
+    "name": "Keso",
+    "nutrition": {}
+    },
+    {
+    "id": 25,
+    "name": "Soija",
+    "nutrition": {}
+    },
+    {
+      "id": 26,
+      "name": "Kalakastike",
+      "nutrition": {}
+    },
+    {
+      "id": 27,
+      "name": "Kidneypapu",
+      "nutrition": {}
+    },
+    {
+      "id": 28,
+      "name": "Mustapapu",
+      "nutrition": {}
+    },
+    {
+      "id": 29,
+      "name": "Islantilainen Jogurtti 3%",
+      "nutrition": {}
+    },
+    {
+      "id": 30,
+      "name": "Sipoolainen Jogurtti 0.7%",
+      "nutrition": {}
+    },
+    {
+      "id": 31,
+      "name": "Inkivääri",
+      "nutrition": {}
+    },
+    {
+      "id": 32,
+      "name": "Chili",
+      "nutrition": {}
+    },
+    {
+      "id": 33,
+      "name": "Hunaja",
+      "nutrition": {}
+    },
+    {
+      "id": 34,
+      "name": "Crystal Stevia",
+      "nutrition": {}
+    },
+    {
+      "id": 35,
+      "name": "Lime/Sitruuna -mehu",
+      "nutrition": {}
+    },
+    {
+      "id": 36,
+      "name": "Porkkana",
+      "nutrition": {}
+    },
+    {
+      "id": 37,
+      "name": "",
+      "nutrition": {}
+    },
+    {
+      "id": 38,
+      "name": "",
+      "nutrition": {}
+    },
+    {
+      "id": 39,
+      "name": "",
+      "nutrition": {}
+    },
+    {
+      "id": 40,
+      "name": "",
+      "nutrition": {}
+    },
+    {
+      "id": 41,
+      "name": "",
+      "nutrition": {}
+    },
+    {
+      "id": 42,
+      "name": "",
+      "nutrition": {}
+    },
+    {
+      "id": 43,
+      "name": "",
+      "nutrition": {}
+    },
+    {
+      "id": 44,
+      "name": "",
+      "nutrition": {}
+    },
+    {
+      "id": 45,
+      "name": "",
+      "nutrition": {}
+    }
+]
