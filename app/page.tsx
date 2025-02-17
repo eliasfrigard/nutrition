@@ -11,7 +11,7 @@ export default function Home() {
   const [foodItems, setFoodItems] = React.useState<FoodItem[]>([])
   const [selectedFood, setSelectedFood] = React.useState<FoodItem | null>(null)
   const [unitValue, setUnitValue] = React.useState('')
-  const [quantityValue, setQuantityValue] = React.useState<number>(0)
+  const [quantityValue, setQuantityValue] = React.useState<number | null>(null)
 
   const [addedItems, setAddedItems] = useStickyState([] as AddedFood[], 'addedItems')
 
@@ -73,6 +73,7 @@ export default function Home() {
       <div className='w-full flex flex-col gap-5 lg:w-2/3'>
         <Select
           value={selectedFood?.id}
+          placeholder='Select Food...'
           onChange={(value) => handleFoodSelect(value)}
           options={
             (foodItems.length &&
@@ -92,7 +93,7 @@ export default function Home() {
             className='w-2/3'
             value={quantityValue}
             setValue={(value) => setQuantityValue(value as number)}
-            placeholder='Type something...'
+            placeholder='Food Quantity...'
             onKeyUp={(e) => e.key === 'Enter' && handleSubmit()}
           />
           <Select
