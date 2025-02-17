@@ -115,7 +115,7 @@ export default function Home() {
       <div className='w-2/3 h-[1px] bg-white rounded-full opacity-10' />
 
       {addedItems.length > 0 && (
-        <div className='w-full flex flex-col gap-4 -mt-6'>
+        <div className='w-full flex flex-col gap-4'>
           <div className='w-full text-white flex justify-end'>
             <button
               onClick={() => setAddedItems([])}
