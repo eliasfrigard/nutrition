@@ -11,7 +11,6 @@ import type { FoodItem, AddedFood } from '@/types'
 export default function Home() {
   const [foodItems, setFoodItems] = React.useState<FoodItem[]>([])
   const [selectedFood, setSelectedFood] = React.useState<FoodItem | null>(null)
-  const [unitValue, setUnitValue] = React.useState('')
   const [quantityValue, setQuantityValue] = React.useState<number | null>(null)
 
   const [addedItems, setAddedItems] = useStickyState([] as AddedFood[], 'addedItems')
@@ -28,7 +27,6 @@ export default function Home() {
         id: selectedFood.id,
         name: selectedFood.name,
         quantity: quantityValue,
-        unit: unitValue,
         foodItem: selectedFood,
       },
     ])
@@ -52,7 +50,7 @@ export default function Home() {
 
   return (
     <>
-      <div className='w-full flex flex-col gap-5 lg:w-2/3'>
+      <div className='w-full flex flex-col gap-4 lg:w-2/3'>
         <Select
           value={selectedFood?.id}
           placeholder='Select Food...'
@@ -69,22 +67,16 @@ export default function Home() {
           }
         />
 
-        <div className='flex gap-4'>
+        <div className='flex gap-4 justify-center items-center'>
           <Input
             type='number'
-            className='w-2/3'
+            className='py-3'
             value={quantityValue}
             setValue={(value) => setQuantityValue(value as number)}
             placeholder='Food Quantity...'
             onKeyUp={(e) => e.key === 'Enter' && handleSubmit()}
           />
-          <Select
-            value='1'
-            className='w-1/3'
-            placeholder='Select Unit'
-            onChange={(value) => setUnitValue(value)}
-            options={[{ value: 'g', label: 'Grams (g)' }]}
-          />
+          <p className='font-bold underline text-lg text-nowrap mr-4'>Grams (g)</p>
         </div>
 
         <button
@@ -100,7 +92,7 @@ export default function Home() {
       {addedItems.length > 0 && (
         <NutritionView
           items={addedItems}
-          clearItems={setAddedItems([])}
+          clearItems={() => setAddedItems([])}
         />
       )}
     </>
