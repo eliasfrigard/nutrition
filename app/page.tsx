@@ -43,6 +43,9 @@ export default function Home() {
     fetch('/foodItems.json')
       .then((res) => res.json())
       .then((data) => {
+        // Omit food items that have no nutritional information.
+        data = data.filter((item: FoodItem) => Object.keys(item.nutrition).length > 0)
+
         setFoodItems(data)
       })
       .catch((error) => console.error('Error fetching food items:', error))
