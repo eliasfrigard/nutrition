@@ -227,9 +227,17 @@
   },
   {
     "id": 21,
-    "name": "Kaurahiutaleet",
+    "name": "Elovena Kaurahiutale",
     "category": "carbohydrate",
-    "nutrition": {}
+    "nutrition": {
+      "calories": 370,
+      "carbohydrates": 55,
+      "sugar": 1.2,
+      "protein": 14,
+      "fat": 8,
+      "saturatedFat: 1.6,
+      "fiber": 11
+    }
   },
   {
     "id": 22,
