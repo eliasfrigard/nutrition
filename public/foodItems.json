@@ -223,7 +223,15 @@
     "id": 20,
     "name": "Chia-siemenet",
     "category": "seed",
-    "nutrition": {}
+    "nutrition": {
+      "calories": 436,
+      "protein": 20,
+      "carbohydrates": 2,
+      "sugar": 0,
+      "fat": 31,
+      "saturatedFat": 3,
+      "fiber": 38
+    }
   },
   {
     "id": 21,
@@ -333,7 +341,14 @@
     "id": 31,
     "name": "Inkivääri",
     "category": "vegetable",
-    "nutrition": {}
+    "nutrition": {
+      "calories": 80,
+      "protein": 1.8,
+      "carbohydrates": 18,
+      "sugar": 1.7,
+      "fat": 0.8,
+      "fiber": 2
+    }
   },
   {
     "id": 32,
@@ -351,7 +366,12 @@
     "id": 34,
     "name": "Crystal Stevia",
     "category": "sweetener",
-    "nutrition": {}
+    "nutrition": {
+      "calories": 0,
+      "carbohydrates": 0,
+      "sugar": 0,
+      "fat": 0
+    }
   },
   {
     "id": 35,
@@ -363,7 +383,14 @@
     "id": 36,
     "name": "Porkkana",
     "category": "vegetable",
-    "nutrition": {}
+    "nutrition": {
+      "calories": 41,
+      "protein": 0.9,
+      "carbohydrates": 10,
+      "sugar": 4.7,
+      "fat": 0.2,
+      "fiber": 2.8
+    }
   },
   {
     "id": 37,
@@ -382,7 +409,14 @@
     "id": 38,
     "name": "Bataatti",
     "category": "vegetable",
-    "nutrition": {}
+    "nutrition": {
+      "calories": 86,
+      "protein": 1.6,
+      "carbohydrates": 20,
+      "sugar": 4.2,
+      "fat": 0.1,
+      "fiber": 3
+    }
   },
   {
     "id": 39,
