@@ -235,7 +235,7 @@
       "sugar": 1.2,
       "protein": 14,
       "fat": 8,
-      "saturatedFat: 1.6,
+      "saturatedFat": 1.6,
       "fiber": 11
     }
   },
@@ -383,5 +383,30 @@
     "name": "Bataatti",
     "category": "vegetable",
     "nutrition": {}
+  },
+  {
+    "id": 39,
+    "name": "Mustikka (Pakastettu)",
+    "category": "berry",
+    "nutrition": {
+      "calories": 65,
+      "protein": 0.8,
+      "carbohydrates": 10.2,
+      "sugar": 8.4,
+      "fat": 1.1,
+      "fiber": 3.3
+    }
+  },
+  {
+    "id": 40,
+    "name": "Vadelma (Pakastettu)",
+    "category": "berry",
+    "nutrition": {
+      "calories": 52,
+      "protein": 1.2,
+      "carbohydrates": 12,
+      "sugar": 4.4,
+      "fat": 0.7
+    }
   }
 ]
