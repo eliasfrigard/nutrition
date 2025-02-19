@@ -277,7 +277,14 @@
     "id": 24,
     "name": "Keso",
     "category": "dairy",
-    "nutrition": {}
+    "nutrition": {
+      "calories": 79,
+      "protein": 13,
+      "carbohydrates": 3.1,
+      "sugar": 2.5,
+      "fat": 1.5,
+      "saturatedFat": 1
+    }
   },
   {
     "id": 25,
@@ -441,6 +448,19 @@
       "carbohydrates": 12,
       "sugar": 4.4,
       "fat": 0.7
+    }
+  },
+  {
+    "id": 41,
+    "name": "El Taco Truck Corn Tortillas",
+    "category": "carbohydrate",
+    "nutrition": {
+      "calories": 213,
+      "protein": 4,
+      "carbohydrates": 45,
+      "sugar": 4,
+      "fat": 2,
+      "saturatedFat": 0
     }
   }
 ]
