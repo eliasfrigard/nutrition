@@ -22,6 +22,52 @@ const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
     }, {} as { [key in keyof Nutrition]: number })
   }, [items])
 
+  const exportToCSV = () => {
+    // Create a union of all nutrient keys across all items.
+    const nutrientSet = new Set<string>()
+    items.forEach((item) => {
+      Object.keys(item.foodItem.nutrition).forEach((key) => nutrientSet.add(key))
+    })
+    const nutrientKeys = Array.from(nutrientSet)
+
+    // Define CSV headers: Name, Quantity, and each nutrient key.
+    const headers = ['Name', 'Quantity', ...nutrientKeys]
+
+    // Create CSV rows for each food item.
+    const rows = items.map((item) => {
+      const quantity = parseFloat(item.quantity)
+      const nutrientValues = nutrientKeys.map((key) => {
+        // If the nutrient exists, calculate the value; otherwise, return an empty string.
+        if (item.foodItem.nutrition[key] !== undefined) {
+          return ((item.foodItem.nutrition[key] * quantity) / 100).toFixed(2)
+        }
+        return ''
+      })
+      return [item.name, item.quantity, ...nutrientValues].join(',')
+    })
+
+    // Create a totals row using the totalNutrition values.
+    const totalsRowValues = nutrientKeys.map((key) => {
+      const total = totalNutrition[key]
+      return total !== undefined ? total.toFixed(2) : ''
+    })
+    const totalsRow = ['Total', '', ...totalsRowValues].join(',')
+
+    // Combine headers, item rows, and the totals row.
+    const csvContent = [headers.join(','), ...rows, totalsRow].join('\n')
+
+    // Create a Blob from the CSV string and trigger the download.
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.setAttribute('href', url)
+    link.setAttribute('download', 'nutrition-data.csv')
+    link.style.visibility = 'hidden'
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
   return (
     <>
       <div className='p-5 text-lg font-semibold flex flex-col md:flex-row gap-1 justify-between items-center bg-yellow-500 text-white rounded'>
@@ -41,6 +87,7 @@ const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
       <div className='w-full text-white flex justify-end gap-3'>
         <Button onClick={() => copyToClipboard('calories')}>Calories</Button>
         <Button onClick={() => copyToClipboard('protein')}>Protein</Button>
+        <Button onClick={exportToCSV}>Export as CSV</Button>
       </div>
     </>
   )
