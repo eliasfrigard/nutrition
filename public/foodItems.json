@@ -502,5 +502,19 @@
       "fat": 0.2,
       "saturatedFat": 0
     }
+  },
+  {
+    "id": 45,
+    "name": "Sunnuntai Erikoisvehnäjauho",
+    "category": "carbohydrate",
+    "nutrition": {
+      "calories": 360,
+      "protein": 12,
+      "carbohydrates": 70,
+      "sugar": 0.5,
+      "fiber": 4,
+      "fat": 2.1,
+      "saturatedFat": 0.4
+    }
   }
 ]
