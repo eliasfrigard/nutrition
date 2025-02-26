@@ -462,5 +462,45 @@
       "fat": 2,
       "saturatedFat": 0
     }
+  },
+  {
+    "id": 42,
+    "name": "Whey 100 (Vanilla)",
+    "category": "carbohydrate",
+    "nutrition": {
+      "calories": 361,
+      "protein": 85,
+      "carbohydrates": 2.2,
+      "sugar": 1.1,
+      "fat": 1.1,
+      "saturatedFat": 1
+    }
+  },
+  {
+    "id": 43,
+    "name": "Whey 100 (Chocolate)",
+    "category": "protein",
+    "nutrition": {
+      "calories": 357,
+      "protein": 84,
+      "carbohydrates": 2.1,
+      "sugar": 1.1,
+      "fat": 1.2,
+      "saturatedFat": 1.1
+    }
+  },
+  {
+    "id": 44,
+    "name": "Omena",
+    "category": "protein",
+    "nutrition": {
+      "calories": 52,
+      "protein": 0.3,
+      "carbohydrates": 14,
+      "sugar": 10,
+      "fiber": 2.4,
+      "fat": 0.2,
+      "saturatedFat": 0
+    }
   }
 ]
