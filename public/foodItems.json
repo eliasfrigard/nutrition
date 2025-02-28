@@ -516,5 +516,45 @@
       "fat": 2.1,
       "saturatedFat": 0.4
     }
+  },
+  {
+    "id": 46,
+    "name": "Orzo (Filos)",
+    "category": "carbohydrate",
+    "nutrition": {
+      "calories": 359,
+      "protein": 11.5,
+      "carbohydrates": 74,
+      "sugar": 3.8,
+      "fat": 1.5,
+      "saturatedFat": 0.3
+    }
+  },
+  {
+    "id": 47,
+    "name": "Liemikuutio Kana (Knorr)",
+    "category": "spice",
+    "nutrition": {
+      "calories": 323,
+      "protein": 3.8,
+      "carbohydrates": 25,
+      "sugar": 4.3,
+      "fat": 23,
+      "saturatedFat": 16
+    }
+  },
+  {
+    "id": 48,
+    "name": "Zucchini",
+    "category": "vegetable",
+    "nutrition": {
+      "calories": 17,
+      "protein": 1.2,
+      "carbohydrates": 3.1,
+      "fiber": 1,
+      "sugar": 2.5,
+      "fat": 0.3,
+      "saturatedFat": 0.1
+    }
   }
 ]
