@@ -556,6 +556,48 @@
       "fat": 0.3,
       "saturatedFat": 0.1
     }
+  },
+  {
+    "id": 49,
+    "name": "Palsternakka",
+    "category": "vegetable",
+    "nutrition": {
+      "calories": 75,
+      "protein": 1.2,
+      "carbohydrates": 18,
+      "fiber": 4.9,
+      "sugar": 4.8,
+      "fat": 0.2,
+      "saturatedFat": 0.1
+    }
+  },
+  {
+    "id": 49,
+    "name": "Porkkana",
+    "category": "vegetable",
+    "nutrition": {
+      "calories": 41,
+      "protein": 0.9,
+      "carbohydrates": 10,
+      "fiber": 2.8,
+      "sugar": 4.7,
+      "fat": 0.2,
+      "saturatedFat": 0
+    }
+  },
+  {
+    "id": 49,
+    "name": "Peruna (kiinteä)",
+    "category": "vegetable",
+    "nutrition": {
+      "calories": 80,
+      "protein": 1.7,
+      "carbohydrates": 16.4,
+      "fiber": 1.4,
+      "sugar": 1.5,
+      "fat": 0,
+      "saturatedFat": 0
+    }
   }
 ]
 
