@@ -394,9 +394,10 @@
       "calories": 41,
       "protein": 0.9,
       "carbohydrates": 10,
+      "fiber": 2.8,
       "sugar": 4.7,
       "fat": 0.2,
-      "fiber": 2.8
+      "saturatedFat": 0
     }
   },
   {
@@ -572,21 +573,7 @@
     }
   },
   {
-    "id": 49,
-    "name": "Porkkana",
-    "category": "vegetable",
-    "nutrition": {
-      "calories": 41,
-      "protein": 0.9,
-      "carbohydrates": 10,
-      "fiber": 2.8,
-      "sugar": 4.7,
-      "fat": 0.2,
-      "saturatedFat": 0
-    }
-  },
-  {
-    "id": 49,
+    "id": 50,
     "name": "Peruna (kiinteä)",
     "category": "vegetable",
     "nutrition": {
