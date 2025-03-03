@@ -585,6 +585,19 @@
       "fat": 0,
       "saturatedFat": 0
     }
+  },
+  {
+    "id": 50,
+    "name": "Mexreal Corn Tortillas",
+    "category": "carbohydrate",
+    "nutrition": {
+      "calories": 174,
+      "protein": 4,
+      "carbohydrates": 38,
+      "sugar": 0.5,
+      "fat": 2,
+      "saturatedFat": 0.3
+    }
   }
 ]
 
