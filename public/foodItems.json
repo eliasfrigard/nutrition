@@ -598,6 +598,19 @@
       "fat": 2,
       "saturatedFat": 0.3
     }
+  },
+  {
+    "id": 52,
+    "name": "Jogurtti Kerikkalainen 6%",
+    "category": "dairy",
+    "nutrition": {
+      "calories": 93,
+      "protein": 5.4,
+      "carbohydrates": 3.8,
+      "sugar": 3.8,
+      "fat": 6,
+      "saturatedFat": 4
+    }
   }
 ]
 
