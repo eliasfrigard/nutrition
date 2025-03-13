@@ -625,6 +625,17 @@
       "fat": 1.1,
       "saturatedFat": 0.4
     }
+  },
+  {
+    "id": 53,
+    "name": "Tamminen Naudan Ulkofilee",
+    "category": "protein",
+    "nutrition": {
+      "calories": 123,
+      "protein": 21,
+      "fat": 4.1,
+      "saturatedFat": 1.9
+    }
   }
 ]
 
