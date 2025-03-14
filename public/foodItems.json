@@ -636,6 +636,19 @@
       "fat": 4.1,
       "saturatedFat": 1.9
     }
+  },
+  {
+    "id": 55,
+    "name": "Kananmuna",
+    "category": "protein",
+    "nutrition": {
+      "calories": 143,
+      "protein": 13,
+      "carbohydrates": 0.7,
+      "sugar": 0.4,
+      "fat": 10,
+      "saturatedFat": 3.1
+    }
   }
 ]
 
