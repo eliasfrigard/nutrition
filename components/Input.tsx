@@ -9,7 +9,14 @@ interface InputProps {
   onKeyUp?: (event: React.KeyboardEvent<HTMLInputElement>) => void
 }
 
-const Input: React.FC<InputProps> = ({ value, setValue, placeholder = '', type = 'text', className = '', onKeyUp }) => {
+const Input: React.FC<InputProps> = ({
+  value,
+  setValue,
+  placeholder = '',
+  type = 'text',
+  className = '',
+  onKeyUp,
+}) => {
   console.log('🚀 || value:', value)
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputVal = event.target.value
@@ -28,7 +35,7 @@ const Input: React.FC<InputProps> = ({ value, setValue, placeholder = '', type =
       value={value || ''}
       onChange={handleChange}
       placeholder={placeholder}
-      className={`p-5 rounded text-black font-bold w-full ${className}`}
+      className={`p-4 rounded text-black font-bold w-full ${className}`}
     />
   )
 }

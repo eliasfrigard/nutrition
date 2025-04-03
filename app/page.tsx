@@ -13,7 +13,10 @@ export default function Home() {
   const [selectedFood, setSelectedFood] = React.useState<FoodItem | null>(null)
   const [quantityValue, setQuantityValue] = React.useState<number | null>(null)
 
-  const [addedItems, setAddedItems] = useStickyState([] as AddedFood[], 'addedItems')
+  const [addedItems, setAddedItems] = useStickyState(
+    [] as AddedFood[],
+    'addedItems'
+  )
 
   const handleSubmit = () => {
     if (!selectedFood || !quantityValue) {
@@ -35,7 +38,9 @@ export default function Home() {
   }
 
   const handleFoodSelect = (value: string) => {
-    const selected = foodItems.find((item) => parseInt(item.id) === parseInt(value))
+    const selected = foodItems.find(
+      (item) => parseInt(item.id) === parseInt(value)
+    )
     setSelectedFood(selected || null)
   }
 
@@ -44,7 +49,9 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => {
         // Omit food items that have no nutritional information.
-        data = data.filter((item: FoodItem) => Object.keys(item.nutrition).length > 0)
+        data = data.filter(
+          (item: FoodItem) => Object.keys(item.nutrition).length > 0
+        )
 
         setFoodItems(data)
       })
@@ -53,7 +60,7 @@ export default function Home() {
 
   return (
     <>
-      <div className='w-full flex flex-col gap-4 lg:w-2/3'>
+      <div className='w-full flex flex-col gap-5 lg:w-2/3'>
         <Select
           value={selectedFood?.id}
           placeholder='Select Food...'
@@ -64,8 +71,11 @@ export default function Home() {
                 .map((item) => ({
                   value: item.id,
                   label: item.name,
+                  category: item.category,
                 }))
-                .sort((a, b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase()))) ||
+                .sort((a, b) =>
+                  a.label.toLowerCase().localeCompare(b.label.toLowerCase())
+                )) ||
             []
           }
         />
@@ -73,18 +83,19 @@ export default function Home() {
         <div className='flex gap-4 justify-center items-center'>
           <Input
             type='number'
-            className='py-3'
             value={quantityValue}
             setValue={(value) => setQuantityValue(value as number)}
             placeholder='Food Quantity...'
             onKeyUp={(e) => e.key === 'Enter' && handleSubmit()}
           />
-          <p className='font-bold underline text-lg text-nowrap mr-4'>Grams (g)</p>
+          <p className='font-bold underline text-lg text-nowrap mr-4'>
+            Grams (g)
+          </p>
         </div>
 
         <button
           onClick={handleSubmit}
-          className='p-5 bg-yellow-500 text-white rounded font-bold hover:bg-yellow-600 duration-100'
+          className='p-4 bg-yellow-500 text-white rounded font-bold hover:bg-yellow-600 duration-100'
         >
           Submit
         </button>

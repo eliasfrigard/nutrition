@@ -31,7 +31,7 @@ const FuzzySelect: React.FC<SelectProps> = ({
       styles={{
         control: (baseStyles) => ({
           ...baseStyles,
-          padding: 5,
+          padding: '0.565rem',
           borderRadius: '0.375rem',
           width: '100%',
           color: 'black',

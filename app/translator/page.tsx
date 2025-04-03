@@ -26,14 +26,17 @@ const TranslatorPage: NextPage = () => {
   const handleSubmit = () => {
     if (!selectedFood) return
 
-    const { nutrition } = foodItems.find((item) => item.id === selectedFood.id) || {}
+    const { nutrition } =
+      foodItems.find((item) => item.id === selectedFood.id) || {}
     const { calories } = nutrition
 
     setFactor(targetCalories / calories)
   }
 
   const handleFoodSelect = (value: string) => {
-    const selected = foodItems.find((item) => parseInt(item.id) === parseInt(value))
+    const selected = foodItems.find(
+      (item) => parseInt(item.id) === parseInt(value)
+    )
     setSelectedFood(selected || null)
   }
 
@@ -50,7 +53,9 @@ const TranslatorPage: NextPage = () => {
                   value: item.id,
                   label: item.name,
                 }))
-                .sort((a, b) => a.label.toLowerCase().localeCompare(b.label.toLowerCase()))) ||
+                .sort((a, b) =>
+                  a.label.toLowerCase().localeCompare(b.label.toLowerCase())
+                )) ||
             []
           }
         />
@@ -63,7 +68,7 @@ const TranslatorPage: NextPage = () => {
 
         <button
           onClick={handleSubmit}
-          className='p-5 bg-yellow-500 text-white rounded font-bold hover:bg-yellow-600 duration-100'
+          className='p-4 bg-yellow-500 text-white rounded font-bold hover:bg-yellow-600 duration-100'
         >
           Submit
         </button>
