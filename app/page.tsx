@@ -95,7 +95,7 @@ export default function Home() {
 
         <button
           onClick={handleSubmit}
-          className='p-4 bg-yellow-500 text-white rounded font-bold hover:bg-yellow-600 duration-100'
+          className='p-4 bg-neutral-900 text-white rounded font-bold hover:bg-neutral-800 duration-150'
         >
           Submit
         </button>

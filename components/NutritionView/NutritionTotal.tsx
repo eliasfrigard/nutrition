@@ -5,7 +5,9 @@ import Select from '@/components/Select'
 import { AddedFood, Nutrition } from '@/types'
 
 const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
-  const [numberOfPortions, setNumberOfPortions] = React.useState<number | null>(null)
+  const [numberOfPortions, setNumberOfPortions] = React.useState<number | null>(
+    null
+  )
 
   const portionOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => ({
     value: value.toString(),
@@ -14,7 +16,9 @@ const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
 
   const copyToClipboard = (nutrient: keyof Nutrition) => {
     const value = totalNutrition[nutrient] || 0
-    navigator.clipboard.writeText(value.toFixed(2)).catch((err) => console.error('Failed to copy: ', err))
+    navigator.clipboard
+      .writeText(value.toFixed(2))
+      .catch((err) => console.error('Failed to copy: ', err))
   }
 
   const totalNutrition = React.useMemo(() => {
@@ -35,7 +39,9 @@ const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
     const nutrientSet = new Set<string>()
 
     items.forEach((item) => {
-      Object.keys(item.foodItem.nutrition).forEach((key) => nutrientSet.add(key))
+      Object.keys(item.foodItem.nutrition).forEach((key) =>
+        nutrientSet.add(key)
+      )
     })
 
     // Convert keys to an array.
@@ -83,7 +89,9 @@ const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
   return (
     <>
       <div className='p-5 text-lg font-semibold flex flex-col md:flex-row gap-1 justify-between items-center bg-yellow-500 text-white rounded'>
-        <h3 className='text-xl font-bold border-b pb-3 md:pb-0 border-opacity-20 md:border-b-0'>Total</h3>
+        <h3 className='text-xl font-bold border-b pb-3 md:pb-0 border-opacity-20 md:border-b-0'>
+          Total
+        </h3>
         <div className='flex gap-1 flex-col md:flex-row w-full md:w-auto'>
           {Object.entries(totalNutrition).map(([key, value]) => (
             <div
@@ -96,7 +104,7 @@ const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
           ))}
         </div>
       </div>
-      <div className='w-full text-white flex justify-end gap-3'>
+      <div className='w-full text-white flex justify-end gap-3 flex-col sm:flex-row flex-wrap mt-3'>
         <div>
           <Select
             value={numberOfPortions?.toString() || ''}
@@ -124,7 +132,9 @@ const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
                 className='md:pr-2 flex justify-between w-full py-2'
               >
                 <p className='capitalize text-[16px]'>{key}:</p>
-                <p className='capitalize text-[16px]'>{(value / numberOfPortions).toFixed(2)}</p>
+                <p className='capitalize text-[16px]'>
+                  {(value / numberOfPortions).toFixed(2)}
+                </p>
               </div>
             ))}
           </div>

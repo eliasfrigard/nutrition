@@ -76,7 +76,7 @@ const TranslatorPage: NextPage = () => {
 
         <button
           onClick={handleSubmit}
-          className='p-4 bg-yellow-500 text-white rounded font-bold hover:bg-yellow-600 duration-100'
+          className='p-4 bg-neutral-900 text-white rounded font-bold hover:bg-yellow-600 duration-100'
         >
           Submit
         </button>
