@@ -44,6 +44,12 @@ export default function Home() {
     setSelectedFood(selected || null)
   }
 
+  const handleRemoveItem = (id: string) => {
+    setAddedItems((prev) => prev.filter((item) => item.id !== id))
+    setSelectedFood(null)
+    setQuantityValue(null)
+  }
+
   React.useEffect(() => {
     fetch('/foodItems.json')
       .then((res) => res.json())
@@ -107,6 +113,7 @@ export default function Home() {
         <NutritionView
           items={addedItems}
           clearItems={() => setAddedItems([])}
+          removeItem={handleRemoveItem}
         />
       )}
     </>
