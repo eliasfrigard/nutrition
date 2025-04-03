@@ -15,6 +15,7 @@ export type FoodItem = {
 }
 
 export type AddedFood = {
+  uuid: string
   id: string
   name: string
   quantity: string

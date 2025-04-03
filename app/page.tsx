@@ -8,6 +8,8 @@ import NutritionView from '@/components/NutritionView'
 import useStickyState from '@/hooks/useStickyState'
 import type { FoodItem, AddedFood } from '@/types'
 
+import { v4 as uuidv4 } from 'uuid'
+
 export default function Home() {
   const [foodItems, setFoodItems] = React.useState<FoodItem[]>([])
   const [selectedFood, setSelectedFood] = React.useState<FoodItem | null>(null)
@@ -27,6 +29,7 @@ export default function Home() {
     setAddedItems((prev) => [
       ...prev,
       {
+        uuid: uuidv4(),
         id: selectedFood.id,
         name: selectedFood.name,
         quantity: quantityValue,
@@ -45,7 +48,7 @@ export default function Home() {
   }
 
   const handleRemoveItem = (id: string) => {
-    setAddedItems((prev) => prev.filter((item) => item.id !== id))
+    setAddedItems((prev) => prev.filter((item) => item.uuid !== id))
     setSelectedFood(null)
     setQuantityValue(null)
   }

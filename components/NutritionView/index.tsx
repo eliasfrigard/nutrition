@@ -30,7 +30,7 @@ const NutritionView = ({
 
       {items.map((item) => (
         <NutritionItem
-          id={item.id}
+          id={item.uuid}
           key={item.id}
           name={item.name}
           quantity={parseInt(item.quantity)}
