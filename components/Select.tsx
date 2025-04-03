@@ -1,40 +1,56 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Select from 'react-select'
 
 interface SelectProps {
   options: { value: string; label: string }[]
   onChange: (value: string) => void
-  value: string
-  label?: string
-  className?: string
+  value: string | null
   placeholder?: string
+  className?: string
 }
 
-const Select: React.FC<SelectProps> = ({ options, onChange, value, className, placeholder }) => {
+const FuzzySelect: React.FC<SelectProps> = ({
+  options,
+  onChange,
+  value,
+  className,
+  placeholder,
+}) => {
+  const [inputValue, setInputValue] = useState('')
+
+  // Filter options based on fuzzy search
+  const filteredOptions =
+    inputValue.length > 0
+      ? options.filter((option) =>
+          option.label.toLowerCase().includes(inputValue.toLowerCase())
+        )
+      : []
+
   return (
-    <select
-      className={`p-5 rounded text-black font-bold w-full ${className}`}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-    >
-      {placeholder && (
-        <option
-          value=''
-          disabled
-          selected={!value}
-        >
-          {placeholder}
-        </option>
-      )}
-      {options.map((option) => (
-        <option
-          key={option.value}
-          value={option.value}
-        >
-          {option.label}
-        </option>
-      ))}
-    </select>
+    <Select
+      styles={{
+        control: (baseStyles) => ({
+          ...baseStyles,
+          padding: 5,
+          borderRadius: '0.375rem',
+          width: '100%',
+          color: 'black',
+        }),
+      }}
+      className={`text-black font-bold w-full ${className}`}
+      value={options.find((opt) => opt.value === value) || null}
+      onChange={(selected) => onChange(selected?.value || '')}
+      options={filteredOptions}
+      onInputChange={(val) => setInputValue(val)}
+      placeholder={placeholder || 'Select an option'}
+      isClearable
+      noOptionsMessage={() =>
+        inputValue.length === 0
+          ? 'Start typing to see options...'
+          : 'No matches found'
+      }
+    />
   )
 }
 
-export default Select
+export default FuzzySelect
