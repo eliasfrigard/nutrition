@@ -747,21 +747,7 @@
     }
   },
   {
-    "id": 60,
-    "name": "Kuningas Marjasekoitus (pakastettu)",
-    "category": "berry",
-    "nutrition": {
-      "calories": 51,
-      "carbohydrates": 8.2,
-      "sugar": 7.2,
-      "protein": 0.7,
-      "fat": 0.6,
-      "saturatedFat": 0,
-      "fiber": 2.6
-    }
-  },
-  {
-    "id": 60,
+    "id": 61,
     "name": "Kuningas Marjasekoitus (pakastettu)",
     "category": "berry",
     "nutrition": {
