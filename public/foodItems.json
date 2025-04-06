@@ -759,6 +759,19 @@
       "saturatedFat": 0,
       "fiber": 2.6
     }
+  },
+  {
+    "id": 61,
+    "name": "Yutaka Udon Noodle",
+    "category": "carbohydrate",
+    "nutrition": {
+      "calories": 337,
+      "carbohydrates": 71,
+      "sugar": 2.9,
+      "protein": 9.5,
+      "fat": 0.9,
+      "saturatedFat": 0.3
+    }
   }
 ]
 
