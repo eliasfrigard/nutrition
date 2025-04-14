@@ -798,5 +798,18 @@
       "fat": 11,
       "saturatedFat": 7.1
     }
+  },
+  {
+    "id": 65,
+    "name": "Tamminen Naudan Paahtopaisti",
+    "category": "protein",
+    "nutrition": {
+      "calories": 111,
+      "protein": 22,
+      "carbohydrates": 0,
+      "sugar": 0,
+      "fat": 2.6,
+      "saturatedFat": 1.1
+    }
   }
 ]
