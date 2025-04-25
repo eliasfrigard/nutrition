@@ -811,5 +811,18 @@
       "fat": 2.6,
       "saturatedFat": 1.1
     }
+  },
+  {
+    "id": 66,
+    "name": "Oltermanni Port Salut",
+    "category": "protein",
+    "nutrition": {
+      "calories": 388,
+      "protein": 22,
+      "carbohydrates": 0,
+      "sugar": 0,
+      "fat": 33,
+      "saturatedFat": 19
+    }
   }
 ]
