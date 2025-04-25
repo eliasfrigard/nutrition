@@ -815,7 +815,7 @@
   {
     "id": 66,
     "name": "Oltermanni Port Salut",
-    "category": "protein",
+    "category": "dairy",
     "nutrition": {
       "calories": 388,
       "protein": 22,
@@ -823,6 +823,19 @@
       "sugar": 0,
       "fat": 33,
       "saturatedFat": 19
+    }
+  },
+  {
+    "id": 66,
+    "name": "Myllyn Paras Lasagne",
+    "category": "carbohydrate",
+    "nutrition": {
+      "calories": 357,
+      "protein": 12,
+      "carbohydrates": 71,
+      "sugar": 2.2,
+      "fat": 1.8,
+      "saturatedFat": 0.5
     }
   }
 ]
