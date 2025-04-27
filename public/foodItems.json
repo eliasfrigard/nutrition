@@ -877,5 +877,18 @@
       "fat": 15,
       "saturatedFat": 2.1
     }
+  },
+  {
+    "id": 71,
+    "name": "Oishii Sushi Riisi",
+    "category": "carbohydrate",
+    "nutrition": {
+      "calories": 348,
+      "protein": 6.1,
+      "carbohydrates": 78,
+      "sugar": 0.5,
+      "fat": 0.9,
+      "saturatedFat": 0.3
+    }
   }
 ]
