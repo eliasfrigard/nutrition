@@ -837,5 +837,45 @@
       "fat": 1.8,
       "saturatedFat": 0.5
     }
+  },
+  {
+    "id": 68,
+    "name": "Mango",
+    "category": "fruit",
+    "nutrition": {
+      "calories": 60,
+      "protein": 0.4,
+      "carbohydrates": 15,
+      "sugar": 14,
+      "fat": 0.4,
+      "saturatedFat": 0.1
+    }
+  },
+  {
+    "id": 69,
+    "name": "Pirkka Katkarapu Liemessä",
+    "category": "seafood",
+    "nutrition": {
+      "calories": 65,
+      "protein": 14,
+      "carbohydrates": 0,
+      "sugar": 0,
+      "fat": 1,
+      "saturatedFat": 0.2
+    }
+  },
+  {
+    "id": 70,
+    "name": "Avocado",
+    "category": "fruit",
+    "nutrition": {
+      "calories": 160,
+      "protein": 2,
+      "carbohydrates": 9,
+      "fiber": 7,
+      "sugar": 0.7,
+      "fat": 15,
+      "saturatedFat": 2.1
+    }
   }
 ]
