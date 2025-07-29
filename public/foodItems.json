@@ -918,5 +918,19 @@
       "fat": 29,
       "saturatedFat": 18
     }
+  },
+  {
+    "id": 74,
+    "name": "GoGreen Green Lentils",
+    "category": "legume",
+    "nutrition": {
+      "calories": 337,
+      "protein": 24,
+      "carbohydrates": 49,
+      "sugar": 1.2,
+      "fiber": 12,
+      "fat": 1.9,
+      "saturatedFat": 0.2
+    }
   }
 ]
