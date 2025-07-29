@@ -974,5 +974,19 @@
       "fat": 0.1,
       "saturatedFat": 0
     }
+  },
+  {
+    "id": 78,
+    "name": "Creme Fraiche 12%",
+    "category": "dairy",
+    "nutrition": {
+      "calories": 141,
+      "protein": 2.8,
+      "carbohydrates": 4.8,
+      "sugar": 3.3,
+      "fiber": 0,
+      "fat": 12,
+      "saturatedFat": 7.1
+    }
   }
 ]
