@@ -1028,5 +1028,16 @@
       "fat": 26,
       "saturatedFat": 18
     }
+  },
+  {
+    "id": 82,
+    "name": "Atria Kanan Minuuttifilee Merisuola",
+    "category": "spice",
+    "nutrition": {
+      "calories": 87,
+      "protein": 20,
+      "fat": 1.1,
+      "saturatedFat": 0.3
+    }
   }
 ]
