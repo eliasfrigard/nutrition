@@ -1006,7 +1006,7 @@
   {
     "id": 80,
     "name": "Pirkka Tuorejuusto Maustamaton",
-    "category": "fungus",
+    "category": "dairy",
     "nutrition": {
       "calories": 180,
       "protein": 5.2,
@@ -1014,6 +1014,19 @@
       "sugar": 4.9,
       "fat": 15,
       "saturatedFat": 11
+    }
+  },
+  {
+    "id": 81,
+    "name": "Knorr Kasvisliemikuutio",
+    "category": "spice",
+    "nutrition": {
+      "calories": 337,
+      "protein": 4.7,
+      "carbohydrates": 21,
+      "sugar": 5.6,
+      "fat": 26,
+      "saturatedFat": 18
     }
   }
 ]
