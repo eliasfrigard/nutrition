@@ -1052,5 +1052,17 @@
       "fat": 1.4,
       "saturatedFat": 0.3
     }
+  },
+  {
+    "id": 84,
+    "name": "Atria Rapea Wieninleike",
+    "category": "protein",
+    "nutrition": {
+      "calories": 155,
+      "carbohydrates": 14,
+      "protein": 18,
+      "fat": 3,
+      "saturatedFat": 1.1
+    }
   }
 ]
