@@ -1039,5 +1039,18 @@
       "fat": 1.1,
       "saturatedFat": 0.3
     }
+  },
+  {
+    "id": 83,
+    "name": "Pirkka Mannasuurimo",
+    "category": "carbohydrate",
+    "nutrition": {
+      "calories": 350,
+      "protein": 11,
+      "carbohydrates": 71,
+      "sugar": 0.4,
+      "fat": 1.4,
+      "saturatedFat": 0.3
+    }
   }
 ]
