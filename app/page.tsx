@@ -107,7 +107,7 @@ export default function Home() {
           className='p-4 bg-neutral-900 text-white rounded font-bold hover:bg-neutral-800 duration-150'
         >
           Submit
-        </button>
+        </button> 
       </div>
 
       <div className='w-2/3 h-[1px] bg-white rounded-full opacity-10' />

@@ -988,5 +988,32 @@
       "fat": 12,
       "saturatedFat": 7.1
     }
+  },
+  {
+    "id": 79,
+    "name": "Herkkusieni",
+    "category": "fungus",
+    "nutrition": {
+      "calories": 15,
+      "protein": 2.1,
+      "carbohydrates": 0.3,
+      "sugar": 0.1,
+      "fiber": 1.5,
+      "fat": 0.2,
+      "saturatedFat": 0.1
+    }
+  },
+  {
+    "id": 80,
+    "name": "Pirkka Tuorejuusto Maustamaton",
+    "category": "fungus",
+    "nutrition": {
+      "calories": 180,
+      "protein": 5.2,
+      "carbohydrates": 5.9,
+      "sugar": 4.9,
+      "fat": 15,
+      "saturatedFat": 11
+    }
   }
 ]
