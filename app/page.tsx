@@ -5,10 +5,13 @@ import Input from '@/components/Input'
 import Select from '@/components/Select'
 import NutritionView from '@/components/NutritionView'
 
+import { createClient } from '@/utils/supabase/client'
 import useStickyState from '@/hooks/useStickyState'
 import type { FoodItem, AddedFood } from '@/types'
 
 import { v4 as uuidv4 } from 'uuid'
+
+const supabase = createClient()
 
 export default function Home() {
   const [foodItems, setFoodItems] = React.useState<FoodItem[]>([])
@@ -54,17 +57,29 @@ export default function Home() {
   }
 
   React.useEffect(() => {
-    fetch('/foodItems.json')
-      .then((res) => res.json())
-      .then((data) => {
-        // Omit food items that have no nutritional information.
-        data = data.filter(
-          (item: FoodItem) => Object.keys(item.nutrition).length > 0
-        )
+    const fetchFoodItems = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('food_items')
+          .select('*')
 
-        setFoodItems(data)
-      })
-      .catch((error) => console.error('Error fetching food items:', error))
+        if (error) {
+          console.error('Error fetching food items:', error)
+          return
+        }
+
+        // Only include items with nutrition data
+        const filtered = data?.filter(
+          (item) => item.nutrition && Object.keys(item.nutrition).length > 0
+        ) || []
+
+        setFoodItems(filtered)
+      } catch (err) {
+        console.error('Unexpected error:', err)
+      }
+    }
+
+    fetchFoodItems()
   }, [])
 
   return (
@@ -107,7 +122,7 @@ export default function Home() {
           className='p-4 bg-neutral-900 text-white rounded font-bold hover:bg-neutral-800 duration-150'
         >
           Submit
-        </button> 
+        </button>
       </div>
 
       <div className='w-2/3 h-[1px] bg-white rounded-full opacity-10' />
