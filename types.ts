@@ -1,10 +1,11 @@
 export type Nutrition = {
   calories: number
   protein?: number
-  carbs?: number
+  carbohydrates?: number
+  sugar?: number
   fat?: number
   saturatedFat?: number
-  sugar?: number
+  fiber?: number
 }
 
 export type FoodItem = {

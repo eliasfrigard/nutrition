@@ -2,30 +2,26 @@
 
 import { useEffect, useState } from 'react'
 import { createClient } from '@/utils/supabase/client'
+import type { Nutrition, FoodItem } from '@/types'
 
 const supabase = createClient()
 
-type Nutrition = {
-  calories: number
-  protein: number
-  carbs: number
-  fat: number
-}
-
-type FoodItem = {
-  id: string
-  name: string
-  nutrition: Nutrition
-}
+// List all keys of Nutrition dynamically
+const nutritionKeys: (keyof Nutrition)[] = [
+  'calories',
+  'protein',
+  'carbohydrates',
+  'fat',
+  'saturatedFat',
+  'sugar',
+  'fiber',
+]
 
 export default function FoodItemsDashboard() {
   const [foodItems, setFoodItems] = useState<FoodItem[]>([])
   const [name, setName] = useState('')
-  const [nutrition, setNutrition] = useState<Nutrition>({
+  const [nutrition, setNutrition] = useState<Partial<Nutrition>>({
     calories: 0,
-    protein: 0,
-    carbs: 0,
-    fat: 0,
   })
 
   const fetchFoodItems = async () => {
@@ -33,24 +29,26 @@ export default function FoodItemsDashboard() {
     if (error) {
       console.error('Supabase error:', error)
     } else {
-      console.log('Fetched data:', data)
       setFoodItems(data as FoodItem[])
     }
   }
 
   const addFoodItem = async () => {
     if (!name) return alert('Please enter a name')
+    if (!nutrition.calories) return alert('Calories are required')
+
     const { data, error } = await supabase.from('food_items').insert([
       {
         name,
         nutrition,
       },
     ])
-    if (error) console.error('Insert error:', error)
-    else {
+    if (error) {
+      console.error('Insert error:', error)
+    } else {
       setFoodItems([...foodItems, ...(data as FoodItem[])])
       setName('')
-      setNutrition({ calories: 0, protein: 0, carbs: 0, fat: 0 })
+      setNutrition({ calories: 0 })
     }
   }
 
@@ -73,17 +71,22 @@ export default function FoodItemsDashboard() {
         />
 
         <div className="grid grid-cols-2 gap-2">
-          {(['calories', 'protein', 'carbs', 'fat'] as const).map((key) => (
-            <input
-              key={key}
-              type="number"
-              placeholder={key}
-              value={nutrition[key]}
-              onChange={(e) =>
-                setNutrition({ ...nutrition, [key]: parseFloat(e.target.value) })
-              }
-              className="p-2 rounded text-black"
-            />
+          {nutritionKeys.map((key) => (
+            <label key={key} className="flex flex-col">
+              <span className="capitalize">{key}</span>
+              <input
+                type="number"
+                placeholder={key}
+                value={nutrition[key] ?? ''}
+                onChange={(e) =>
+                  setNutrition({
+                    ...nutrition,
+                    [key]: e.target.value === '' ? undefined : parseFloat(e.target.value),
+                  })
+                }
+                className="p-2 rounded text-black"
+              />
+            </label>
           ))}
         </div>
 
