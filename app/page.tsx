@@ -86,7 +86,7 @@ export default function Home() {
       {/* Optional: Header branding */}
       <header className="text-center space-y-1 mb-2">
         <h1 className="text-2xl font-black tracking-tighter text-white uppercase">
-          Fuel<span className="text-amber-500">Log</span>
+          NUTR<span className="text-amber-500">iTION</span>
         </h1>
       </header>
 
