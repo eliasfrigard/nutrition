@@ -68,7 +68,6 @@ export default function Home() {
           return
         }
 
-        // Only include items with nutrition data
         const filtered = data?.filter(
           (item) => item.nutrition && Object.keys(item.nutrition).length > 0
         ) || []
@@ -83,49 +82,74 @@ export default function Home() {
   }, [])
 
   return (
-    <>
-      <div className='w-full flex flex-col gap-5 lg:w-2/3'>
-        <Select
-          value={selectedFood?.id}
-          placeholder='Select Food...'
-          onChange={(value) => handleFoodSelect(value)}
-          options={
-            (foodItems.length &&
-              foodItems
-                .map((item) => ({
-                  value: item.id,
-                  label: item.name,
-                  category: item.category,
-                }))
-                .sort((a, b) =>
-                  a.label.toLowerCase().localeCompare(b.label.toLowerCase())
-                )) ||
-            []
-          }
-        />
+    <div className='w-full flex flex-col gap-6'>
+      {/* Optional: Header branding */}
+      <header className="text-center space-y-1 mb-2">
+        <h1 className="text-2xl font-black tracking-tighter text-white uppercase">
+          Fuel<span className="text-amber-500">Log</span>
+        </h1>
+      </header>
 
-        <div className='flex gap-4 justify-center items-center'>
-          <Input
-            type='number'
-            value={quantityValue}
-            setValue={(value) => setQuantityValue(value as number)}
-            placeholder='Food Quantity...'
-            onKeyUp={(e) => e.key === 'Enter' && handleSubmit()}
+      <div className='w-full bg-zinc-900/50 border border-zinc-800 backdrop-blur-md p-6 rounded-3xl shadow-2xl flex flex-col gap-5'>
+        {/* Select Food Section */}
+        <div className="space-y-1.5">
+          <label className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.15em] ml-1">
+            Search Food Item
+          </label>
+          <Select
+            value={selectedFood?.id}
+            placeholder='Select Food...'
+            onChange={(value) => handleFoodSelect(value)}
+            options={
+              (foodItems.length &&
+                foodItems
+                  .map((item) => ({
+                    value: item.id,
+                    label: item.name,
+                    category: item.category,
+                  }))
+                  .sort((a, b) =>
+                    a.label.toLowerCase().localeCompare(b.label.toLowerCase())
+                  )) ||
+              []
+            }
           />
-          <p className='font-bold underline text-lg text-nowrap mr-4'>
-            Grams (g)
-          </p>
         </div>
 
-        <button
-          onClick={handleSubmit}
-          className='p-4 bg-neutral-900 text-white rounded font-bold hover:bg-neutral-800 duration-150'
-        >
-          Submit
-        </button>
-      </div>
+        {/* Input Row: Standardized Heights */}
+        <div className='grid grid-cols-2 gap-4'>
+          <div className="space-y-1.5">
+            <label className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.15em] ml-1">
+              Weight
+            </label>
+            <div className="relative group">
+              <Input
+                type='number'
+                value={quantityValue}
+                setValue={(value) => setQuantityValue(value as number)}
+                placeholder='0.00'
+                // Ensure your Input component accepts a className, or adjust its internal padding to match h-11
+                className="h-11 pr-10"
+                onKeyUp={(e) => e.key === 'Enter' && handleSubmit()}
+              />
+              <span className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 font-bold text-xs uppercase tracking-widest pointer-events-none">
+                g
+              </span>
+            </div>
+          </div>
 
-      <div className='w-2/3 h-[1px] bg-white rounded-full opacity-10' />
+          <div className="space-y-1.5 flex flex-col justify-end">
+            {/* Using justify-end and h-11 to match the input box precisely */}
+            <button
+              onClick={handleSubmit}
+              className='h-11 w-full bg-amber-500 text-black rounded-xl font-black text-xs uppercase tracking-widest hover:bg-amber-400 hover:shadow-[0_0_20px_rgba(245,158,11,0.2)] transition-all active:scale-[0.97] flex items-center justify-center gap-2'
+            >
+              <span>Add Entry</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
 
       {addedItems.length > 0 && (
         <NutritionView
@@ -134,6 +158,6 @@ export default function Home() {
           removeItem={handleRemoveItem}
         />
       )}
-    </>
+    </div>
   )
 }
