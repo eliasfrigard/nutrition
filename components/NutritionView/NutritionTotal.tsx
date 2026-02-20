@@ -1,11 +1,12 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Select from '@/components/Select'
 import { AddedFood, Nutrition } from '@/types'
 
 const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
-  const [numberOfPortions, setNumberOfPortions] = React.useState<number | null>(null)
+  const [numberOfPortions, setNumberOfPortions] = useState<number | null>(null)
+  const [isCopied, setIsCopied] = useState(false) // State for the checkmark feedback
 
   const portionOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((value) => ({
     value: value.toString(),
@@ -25,11 +26,29 @@ const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
     }, {} as { [key in keyof Nutrition]: number })
   }, [items])
 
-  const copyToClipboard = (nutrient: keyof Nutrition) => {
-    const value = totalNutrition[nutrient] || 0
+  const copyToSheets = () => {
+    const divisor = numberOfPortions || 1
+
+    const values = [
+      (totalNutrition.calories || 0) / divisor,
+      (totalNutrition.protein || 0) / divisor,
+      (totalNutrition.carbohydrates || 0) / divisor,
+      (totalNutrition.fat || 0) / divisor,
+      (totalNutrition.fiber || 0) / divisor
+    ]
+
+    const clipboardString = values
+      .map(v => v.toFixed(1))
+      .join('\t')
+
     navigator.clipboard
-      .writeText(value.toFixed(2))
-      .then(() => alert(`${nutrient} copied!`))
+      .writeText(clipboardString)
+      .then(() => {
+        // Trigger the checkmark feedback
+        setIsCopied(true)
+        // Revert back after 2 seconds
+        setTimeout(() => setIsCopied(false), 2000)
+      })
       .catch((err) => console.error('Failed to copy: ', err))
   }
 
@@ -69,7 +88,6 @@ const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
     <div className='w-full space-y-6 mt-8'>
       {/* 1. Main Dashboard Card */}
       <div className='bg-amber-500 p-6 rounded-2xl shadow-2xl shadow-amber-500/10 text-black relative overflow-hidden'>
-        {/* Decorative pattern for a premium feel */}
         <div className='absolute right-[-10%] top-[-10%] w-32 h-32 bg-white/10 rounded-full blur-3xl' />
 
         <div className='flex justify-between items-center mb-6'>
@@ -79,11 +97,11 @@ const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
           <div className='h-1.5 w-12 bg-black/20 rounded-full' />
         </div>
 
-        <div className='grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4'>
+        <div className='grid grid-cols-2 md:grid-cols-5 gap-y-6 gap-x-4'>
           {Object.entries(totalNutrition).map(([key, value]) => (
             <div key={key} className='flex flex-col border-l-2 border-black/10 pl-3'>
-              <span className='capitalize text-[11px] font-bold opacity-70 mb-1'>{key}</span>
-              <span className='text-3xl font-black tracking-tighter leading-none'>
+              <span className='capitalize text-[11px] font-bold opacity-70 mb-1 truncate'>{key}</span>
+              <span className='text-2xl font-black tracking-tighter leading-none'>
                 {value.toFixed(1)}
               </span>
             </div>
@@ -98,10 +116,10 @@ const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
             <div className='h-2 w-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.5)]' />
             <h3 className='text-xs uppercase font-bold text-zinc-400 tracking-widest'>Per Portion ({numberOfPortions})</h3>
           </div>
-          <div className='grid grid-cols-2 md:grid-cols-4 gap-4'>
+          <div className='grid grid-cols-2 md:grid-cols-5 gap-4'>
             {Object.entries(totalNutrition).map(([key, value]) => (
               <div key={key} className='flex justify-between md:flex-col border-b border-zinc-800/50 md:border-b-0 pb-2 md:pb-0'>
-                <span className='capitalize text-xs text-zinc-500'>{key}</span>
+                <span className='capitalize text-xs text-zinc-500 truncate'>{key}</span>
                 <span className='text-lg font-mono text-zinc-100 font-semibold'>
                   {(value / numberOfPortions).toFixed(1)}
                 </span>
@@ -123,28 +141,32 @@ const NutritionTotal = ({ items }: { items: AddedFood[] }) => {
         </div>
 
         <div className='flex items-center gap-2 w-full sm:w-auto justify-center'>
-          {/* Copy Calories */}
+          {/* Enhanced Copy Button with Checkmark Feedback */}
           <button
-            onClick={() => copyToClipboard('calories' as keyof Nutrition)}
-            className='flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-xl transition-all text-xs font-bold'
+            onClick={copyToSheets}
+            className={`flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl transition-all active:scale-[0.97] text-xs font-black uppercase tracking-widest min-w-[180px] ${
+              isCopied
+                ? 'bg-emerald-500 text-white'
+                : 'bg-amber-500 text-black hover:bg-amber-400'
+            }`}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-            Cal
+            {isCopied ? (
+              <>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Copied!
+              </>
+            ) : (
+              <>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/></svg>
+                Copy Row
+              </>
+            )}
           </button>
 
-          {/* Copy Protein */}
-          <button
-            onClick={() => copyToClipboard('protein' as keyof Nutrition)}
-            className='flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-xl transition-all text-xs font-bold'
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
-            Prot
-          </button>
-
-          {/* Export CSV */}
+          {/* Export CSV (Secondary Style) */}
           <button
             onClick={exportToCSV}
-            className='flex-1 sm:flex-none flex items-center justify-center p-2.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-500 rounded-xl transition-all border border-amber-500/20'
+            className='flex-1 sm:flex-none flex items-center justify-center p-2.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-400 rounded-xl transition-all border border-zinc-700/50'
             title="Export CSV"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
